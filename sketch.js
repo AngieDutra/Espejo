@@ -1,8 +1,4 @@
-//'use strict';
-
 var video;
-var x;
-var y;
 var curvePointX = 0;
 var curvePointY = 0;
 var pointCount = 0.5;
@@ -13,10 +9,12 @@ var inputText = 'QUERIBLE';
 var kerning = 1; // between letters
 
 var fontSize = 10;
+var drawRate = 740; // strokes drawn per frame
 
 /* CONFIGURACION */
 function setup() {
-  createCanvas(490, 740);
+  var cnv = createCanvas(490, 740);
+  cnv.parent('canvas');
   background(255);
   // Recibe imagen
   video = createCapture(VIDEO, function() {
@@ -25,14 +23,6 @@ function setup() {
   video.size(width*2 * pixelDensity(), height * pixelDensity());
   video.hide();
 
-  //Test con imagen original
-/*
-  espejo = createCapture(VIDEO, function() {
-    streamReady = true;
-  });
-  espejo.size(820, height);
-  espejo.hide();
-*/
   textFont('Times');
   textSize(fontSize);
   textAlign(LEFT, CENTER);
@@ -42,7 +32,10 @@ function setup() {
 /* VISUALIZACION */
 function draw() {
   if (streamReady) {
-    
+
+  textSize(fontSize);
+
+  var word = inputText.toUpperCase();
   var x = 0;
   var y = 0;
   var counter = 0;
@@ -50,23 +43,18 @@ function draw() {
     // translate position (display) to position (image)
     video.loadPixels();
 
-    for (var j = 0; j <= (width, height); j++) {
+    for (var j = 0; j < drawRate; j++) {
 
       // Retrieve color from capture device
       var c = color(video.get(x, y));
 
-      // convert color c to HSV
-      //var cHSV = chroma(red(c), green(c), blue(c));
-      //strokeWeight(cHSV.get('hsv.h') / 50);
-      //stroke(c);
-
       noStroke();
       push();
       translate(x, y);
-      
-      var letter = inputText.charAt(counter);
+
+      var letter = word.charAt(counter);
       fill(c);
-	    text(inputText, -width/2 , 0);
+	    text(word, -width/2 , 0);
 	    var letterWidth = textWidth(letter) + kerning;
 	    // for the next letter ... x + letter width
 	    x += letterWidth;
@@ -98,8 +86,8 @@ function draw() {
 
 /* COMANDOS POR TECLADO */
 function keyReleased() {
-  if (keyCode == DELETE || keyCode == BACKSPACE) clear(); background(255);
-  if (key == 's' || key == 'S') saveCanvas(gd.timestamp(), 'png');
-  if (key == 'q' || key == 'Q') noLoop();
-  if (key == 'w' || key == 'W') loop();
+  if (keyCode == DELETE || keyCode == BACKSPACE) {
+    clear();
+    background(255);
+  }
 }

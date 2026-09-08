@@ -1,23 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
   <head>
+    <meta charset="UTF-8">
+    <title>Espejo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Archivo:wght@600;700;800&display=swap">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.dom.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.2/addons/p5.sound.min.js"></script>
 
-    <!-- Generative Design Dependencies -->
-    <!-- GG Bundled -->
+    <!-- gd.timestamp() for saved-frame filenames -->
     <script src="https://cdn.jsdelivr.net/gh/generative-design/Code-Package-p5.js@master/libraries/gg-dep-bundle/gg-dep-bundle.js"></script>
-    <!-- Opentype -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/0.7.3/opentype.min.js"></script>
-    <!-- Rita -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/rita/1.3.11/rita-small.min.js"></script>
-    <!-- Chroma -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/1.3.6/chroma.min.js"></script>
-    <!-- Jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-      crossorigin="anonymous"></script>
 
     <!-- CANVAS -->
     <script src="sketch.js"></script>
@@ -29,7 +22,48 @@
   <body>
     <!-- main -->
     <main>
-      <div id='canvas'></div>
+      <div class="layout">
+
+        <div class="mirror-pane">
+          <div id="canvas"></div>
+
+          <div class="manual-overlay">
+            <span class="cm tl">+</span><span class="cm tr">+</span><span class="cm bl">+</span><span class="cm br">+</span>
+          </div>
+        </div>
+
+        <div class="info-pane">
+          <p class="eb">Project</p>
+          <h1 class="ttl">Espejo</h1>
+          <p class="desc">A generative art mirror. Your webcam feed, redrawn as scattered type along a random curve.</p>
+          <div class="metarow">
+            <span>Webcam, generative art</span>
+            <span>2019</span>
+          </div>
+
+          <div class="settings">
+            <p class="settings-label">Settings</p>
+            <div class="fld">
+              <span class="fld-label">Word</span>
+              <input type="text" id="wordInput" value="QUERIBLE" maxlength="24" autocomplete="off" spellcheck="false">
+            </div>
+            <div class="fld">
+              <span class="fld-label">Size</span>
+              <input type="range" id="sizeSlider" min="4" max="48" step="1" value="10">
+              <output for="sizeSlider" id="sizeValue">10</output>
+            </div>
+            <div class="fld">
+              <span class="fld-label">Rate</span>
+              <input type="range" id="rateSlider" min="100" max="3000" step="50" value="740">
+              <output for="rateSlider" id="rateValue">740</output>
+            </div>
+            <p class="hint">&#8984;I &middot; Save the current frame as a PNG</p>
+          </div>
+        </div>
+
+      </div>
     </main>
+
+    <script src="theme.js"></script>
   </body>
 </html>
