@@ -41,6 +41,15 @@ function setup() {
   video.style('opacity', '0');
   video.style('position', 'absolute');
   video.style('pointer-events', 'none');
+  // Left at its native stream resolution (e.g. 640px) this element was wider
+  // than a phone viewport and, being position:absolute outside .layout,
+  // wasn't clipped by anything — the actual cause of the mobile horizontal
+  // scroll. Shrinking the box (not display:none/visibility:hidden, which
+  // throttle decoding) removes it from the page's scrollable area.
+  video.style('top', '0');
+  video.style('left', '0');
+  video.style('width', '1px');
+  video.style('height', '1px');
   video.elt.addEventListener('loadedmetadata', function () {
     streamReady = true;
   });

@@ -4,6 +4,9 @@
   padding:0;
 }
 
+html,body{
+  overflow-x:hidden;
+}
 body{
   min-height:100vh;
   display:flex;
@@ -60,6 +63,7 @@ canvas{display:block;border:1px solid #1a1a16;}
 .info-panel .metarow{
   font-family:'IBM Plex Mono', monospace;font-size:.6rem;letter-spacing:.04em;opacity:.55;
   display:flex;flex-direction:column;gap:4px;margin-bottom:22px;
+  overflow-wrap:anywhere;
 }
 .info-panel .metarow a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
 .info-panel .metarow a:hover{opacity:.8;}
@@ -87,6 +91,30 @@ canvas{display:block;border:1px solid #1a1a16;}
 .hint{
   font-family:'IBM Plex Mono', monospace;font-size:.58rem;letter-spacing:.04em;opacity:.55;
   margin-top:4px;
+}
+
+/* ---------- Mobile: stack the two-column layout, full-bleed mirror ---------- */
+@media (max-width: 900px){
+  main{display:block;padding:0;overflow-x:hidden;}
+  .layout{display:flex;flex-direction:column;gap:0;width:100%;min-width:0;}
+
+  .mirror-panel{
+    width:100%;
+    height:100vh;
+    height:100dvh;
+    max-width:none;
+  }
+  .mirror-panel canvas{
+    /* p5 sets an inline style="width:490px;height:740px" on the canvas
+       element itself, which beats any external stylesheet rule regardless
+       of specificity — !important is the only way to override it here. */
+    width:100% !important;
+    height:100% !important;
+    border:none;
+    object-fit:cover;
+  }
+
+  .info-panel{width:100%;min-width:0;padding:32px 24px 48px;}
 }
 
 @media (prefers-reduced-motion: reduce){
