@@ -12,8 +12,11 @@
     <!-- gd.timestamp() for saved-frame filenames -->
     <script src="https://cdn.jsdelivr.net/gh/generative-design/Code-Package-p5.js@master/libraries/gg-dep-bundle/gg-dep-bundle.js"></script>
 
+    <!-- ml5.js: face detection, so the piece only activates for an actual person -->
+    <script src="https://unpkg.com/ml5@1.4.0/dist/ml5.min.js"></script>
+
     <!-- CANVAS -->
-    <script src="sketch.js"></script>
+    <script src="sketch.js?v=7"></script>
 
     <!-- ESTILOS -->
     <link rel="stylesheet" type="text/css" href="styles.css">
@@ -35,9 +38,9 @@
         <div class="info-pane">
           <p class="eb">Project</p>
           <h1 class="ttl">Espejo</h1>
-          <p class="desc">A generative art mirror. Your webcam feed, redrawn as scattered type along a random curve.</p>
+          <p class="desc">&ldquo;Espejo&rdquo; grew out of a familiar habit: constantly checking myself in the mirror for flaws and abusing filters to meet other people's beauty standards. The piece aims to insert itself into the tool used to criticize ourselves &mdash; the mirror. Installed as an unremarkable mirror in an unremarkable room, it waits for the same instinctive glance most mirrors invite &mdash; the one that usually goes looking for flaws &mdash; and answers it with a chosen compliment instead, rendered directly onto the person standing in front of it.</p>
           <div class="metarow">
-            <span>Webcam, generative art</span>
+            <span>Generative art</span>
             <span>2019</span>
           </div>
 
@@ -49,13 +52,13 @@
             </div>
             <div class="fld">
               <span class="fld-label">Size</span>
-              <input type="range" id="sizeSlider" min="4" max="48" step="1" value="10">
-              <output for="sizeSlider" id="sizeValue">10</output>
+              <input type="range" id="sizeSlider" min="4" max="48" step="1" value="12">
+              <output for="sizeSlider" id="sizeValue">12</output>
             </div>
             <div class="fld">
               <span class="fld-label">Rate</span>
-              <input type="range" id="rateSlider" min="100" max="3000" step="50" value="740">
-              <output for="rateSlider" id="rateValue">740</output>
+              <input type="range" id="rateSlider" min="100" max="3000" step="50" value="150">
+              <output for="rateSlider" id="rateValue">150</output>
             </div>
             <p class="hint">&#8984;I &middot; Save the current frame as a PNG</p>
           </div>
